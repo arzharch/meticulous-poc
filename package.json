@@ -1,5 +1,5 @@
 {
-  "name": "meticulous",
+  "name": "deployment-readiness-assessor",
   "version": "0.1.0",
   "private": true,
   "scripts": {
