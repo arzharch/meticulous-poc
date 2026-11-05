@@ -6,6 +6,7 @@ import { SEVERITY_LABEL, SEVERITY_ORDER, readinessLabel, readinessTone } from "@
 import { resultToMarkdown } from "@/lib/markdown";
 import { encodeAnswers } from "@/lib/share";
 import { Button, Card, copyToClipboard } from "@/components/ui";
+import { AIAnalysis } from "@/components/AIAnalysis";
 
 const SEVERITY_STYLES: Record<Severity, { dot: string; badge: string; ring: string }> = {
   critical: { dot: "bg-rose-600", badge: "bg-rose-50 text-rose-700 ring-rose-200", ring: "ring-rose-200" },
@@ -118,6 +119,8 @@ export function Report({
         </div>
       </Card>
 
+      <AIAnalysis answers={answers} findings={result.findings} />
+
       {result.findings.length === 0 ? (
         <Card className="p-8 text-center">
           <p className="text-slate-600">
@@ -127,6 +130,14 @@ export function Report({
         </Card>
       ) : (
         <div className="space-y-8">
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500 mb-1">
+              Individual Findings
+            </h2>
+            <p className="text-xs text-slate-400 mb-4">
+              Deterministic checks from the rule engine — each finding maps to a specific answer.
+            </p>
+          </div>
           {categories.map((cat) => {
             const items = result.findings.filter((f) => f.category === cat);
             if (items.length === 0) return null;

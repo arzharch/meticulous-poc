@@ -26,8 +26,25 @@ export function Intro({ onStart }: { onStart: () => void }) {
           A deployment rarely fails because of the feature itself — it fails because of the
           surrounding setup: an untested SSO claim mapping, a staging environment that doesn&apos;t
           match production, a webhook with no rate limit. This tool takes a structured pass through
-          six areas and surfaces what an FDE should dig into before go-live, not after.
+          six areas, runs deterministic checks, then uses AI to identify compound risks that
+          emerge from the interaction of multiple factors — the kind of pattern recognition that
+          only comes from experience across many customer environments.
         </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+        <Card className="p-4 border-indigo-100 bg-indigo-50/30">
+          <div className="font-medium text-indigo-900 text-sm mb-1">1. Structured intake</div>
+          <div className="text-xs text-slate-600">Walk through six deployment areas in ~3 minutes.</div>
+        </Card>
+        <Card className="p-4 border-indigo-100 bg-indigo-50/30">
+          <div className="font-medium text-indigo-900 text-sm mb-1">2. Rule engine</div>
+          <div className="text-xs text-slate-600">25+ deterministic checks surface individual risks with validation steps.</div>
+        </Card>
+        <Card className="p-4 border-indigo-100 bg-indigo-50/30">
+          <div className="font-medium text-indigo-900 text-sm mb-1">3. AI synthesis</div>
+          <div className="text-xs text-slate-600">LLM identifies compound risks, writes a deployment brief, and prioritizes actions.</div>
+        </Card>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
