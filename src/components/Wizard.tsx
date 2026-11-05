@@ -9,6 +9,7 @@ import { FeatureFlagsStep } from "@/components/steps/FeatureFlagsStep";
 import { ThirdPartyStep } from "@/components/steps/ThirdPartyStep";
 import { TestInfraStep } from "@/components/steps/TestInfraStep";
 import { RealtimeStep } from "@/components/steps/RealtimeStep";
+import { MeticulousStep } from "@/components/steps/MeticulousStep";
 
 const STEPS = [
   { key: "basics", label: "Customer" },
@@ -18,6 +19,7 @@ const STEPS = [
   { key: "third-party", label: "Third-Party Services" },
   { key: "test-infra", label: "Test Infrastructure" },
   { key: "realtime", label: "Realtime Behaviour" },
+  { key: "meticulous", label: "Meticulous Integration" },
 ] as const;
 
 export function Wizard({
@@ -119,6 +121,12 @@ export function Wizard({
             onChange={(v) => setAnswers({ ...answers, realtime: v })}
           />
         )}
+        {step.key === "meticulous" && (
+          <MeticulousStep
+            value={answers.meticulous}
+            onChange={(v) => setAnswers({ ...answers, meticulous: v })}
+          />
+        )}
 
         <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-6">
           <Button variant="secondary" onClick={prev}>
@@ -147,5 +155,7 @@ function stepDescription(key: (typeof STEPS)[number]["key"]): string {
       return "What actually proves a deploy is safe before it ships.";
     case "realtime":
       return "Live, push-based behaviour and how it degrades under real-world conditions.";
+    case "meticulous":
+      return "How this app's frontend architecture interacts with Meticulous's recorder, replay engine, and screenshot comparison.";
   }
 }

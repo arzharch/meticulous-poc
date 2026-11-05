@@ -30,6 +30,7 @@ export function buildResult(findings: RiskFinding[]): AssessmentResult {
     "third-party": 0,
     "test-infra": 0,
     realtime: 0,
+    meticulous: 0,
   };
 
   let deduction = 0;

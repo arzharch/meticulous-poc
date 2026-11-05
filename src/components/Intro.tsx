@@ -9,7 +9,8 @@ const AREAS = [
   { title: "Third-Party Services", desc: "Critical dependencies, webhooks, payment, outage plans." },
   { title: "Test Infrastructure", desc: "E2E coverage, staging fidelity, load testing." },
   { title: "Realtime Behaviour", desc: "WebSockets/SSE reconnects, idempotency, load shape." },
-];
+  { title: "Meticulous Integration", desc: "Recorder compatibility, replay determinism, screenshot baselines, CSP, animations, i18n.", highlight: true },
+] as { title: string; desc: string; highlight?: boolean }[];
 
 export function Intro({ onStart }: { onStart: () => void }) {
   return (
@@ -35,11 +36,11 @@ export function Intro({ onStart }: { onStart: () => void }) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
         <Card className="p-4 border-indigo-100 bg-indigo-50/30">
           <div className="font-medium text-indigo-900 text-sm mb-1">1. Structured intake</div>
-          <div className="text-xs text-slate-600">Walk through six deployment areas in ~3 minutes.</div>
+          <div className="text-xs text-slate-600">Walk through seven deployment areas in ~4 minutes.</div>
         </Card>
         <Card className="p-4 border-indigo-100 bg-indigo-50/30">
           <div className="font-medium text-indigo-900 text-sm mb-1">2. Rule engine</div>
-          <div className="text-xs text-slate-600">25+ deterministic checks surface individual risks with validation steps.</div>
+          <div className="text-xs text-slate-600">40+ deterministic checks surface individual risks with validation steps.</div>
         </Card>
         <Card className="p-4 border-indigo-100 bg-indigo-50/30">
           <div className="font-medium text-indigo-900 text-sm mb-1">3. AI synthesis</div>
@@ -49,16 +50,22 @@ export function Intro({ onStart }: { onStart: () => void }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
         {AREAS.map((a) => (
-          <Card key={a.title} className="p-4">
-            <div className="font-medium text-slate-900 text-sm mb-1">{a.title}</div>
-            <div className="text-xs text-slate-500">{a.desc}</div>
+          <Card
+            key={a.title}
+            className={`p-4 ${a.highlight ? "border-indigo-200 bg-indigo-50/40 sm:col-span-2" : ""}`}
+          >
+            <div className={`font-medium text-sm mb-1 ${a.highlight ? "text-indigo-900" : "text-slate-900"}`}>
+              {a.title}
+            </div>
+            <div className={`text-xs ${a.highlight ? "text-indigo-700/70" : "text-slate-500"}`}>{a.desc}</div>
           </Card>
         ))}
       </div>
 
       <Button onClick={onStart}>Start assessment</Button>
       <p className="mt-3 text-xs text-slate-400">
-        Takes about 3 minutes. Nothing is sent anywhere — everything runs and stays in your browser.
+        Takes about 4 minutes. Rule checks run locally in your browser. AI synthesis sends the
+        profile to generate compound risk analysis — no customer data is stored.
       </p>
     </div>
   );
