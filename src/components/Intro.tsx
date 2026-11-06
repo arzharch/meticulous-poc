@@ -12,7 +12,13 @@ const AREAS = [
   { title: "Meticulous Integration", desc: "Recorder compatibility, replay determinism, screenshot baselines, CSP, animations, i18n.", highlight: true },
 ] as { title: string; desc: string; highlight?: boolean }[];
 
-export function Intro({ onStart }: { onStart: () => void }) {
+export function Intro({
+  onStart,
+  onViewSample,
+}: {
+  onStart: () => void;
+  onViewSample: () => void;
+}) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-14">
       <div className="mb-10">
@@ -62,10 +68,17 @@ export function Intro({ onStart }: { onStart: () => void }) {
         ))}
       </div>
 
-      <Button onClick={onStart}>Start assessment</Button>
+      <div className="flex flex-wrap items-center gap-3">
+        <Button onClick={onStart}>Start assessment</Button>
+        <Button variant="secondary" onClick={onViewSample}>
+          View sample report
+        </Button>
+      </div>
       <p className="mt-3 text-xs text-slate-400">
         Takes about 4 minutes. Rule checks run locally in your browser. AI synthesis sends the
-        profile to generate compound risk analysis — no customer data is stored.
+        profile to generate compound risk analysis — no customer data is stored. &quot;View
+        sample report&quot; loads a fictional profile straight into a full report, no intake
+        required.
       </p>
     </div>
   );

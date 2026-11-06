@@ -896,7 +896,7 @@ const meticulousRules: Rule[] = [
           severity: "high",
           title: `${a.meticulous.localeCount} locales — visual baselines multiply with each locale`,
           explanation:
-            "Each locale can produce different text lengths, text direction (RTL), date formats, and number formats, all of which change the visual layout. With ${a.meticulous.localeCount} locales, the baseline set is ${a.meticulous.localeCount}x larger, and a layout change needs approval across all locales. Without a locale-aware testing strategy, regressions in non-default locales go undetected until a customer reports them.",
+            `Each locale can produce different text lengths, text direction (RTL), date formats, and number formats, all of which change the visual layout. With ${a.meticulous.localeCount} locales, the baseline set is ${a.meticulous.localeCount}x larger, and a layout change needs approval across all locales. Without a locale-aware testing strategy, regressions in non-default locales go undetected until a customer reports them.`,
           validationSteps: [
             "Decide which locales are critical enough to maintain Meticulous baselines for — testing all locales may not be practical.",
             "Configure Meticulous to capture sessions across at least the default locale and the most-different locale (e.g., English + Arabic for RTL, or English + German for text-length extremes).",

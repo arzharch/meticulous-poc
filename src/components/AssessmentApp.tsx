@@ -6,6 +6,7 @@ import { Answers, defaultAnswers } from "@/lib/types";
 import { evaluateRules } from "@/lib/rules";
 import { buildResult } from "@/lib/scoring";
 import { decodeAnswers } from "@/lib/share";
+import { sampleAnswers } from "@/lib/sampleAnswers";
 import { Intro } from "@/components/Intro";
 import { Wizard } from "@/components/Wizard";
 import { Report } from "@/components/Report";
@@ -41,7 +42,15 @@ export function AssessmentApp() {
       </header>
 
       <main className="flex-1">
-        {mode === "intro" && <Intro onStart={() => setMode("wizard")} />}
+        {mode === "intro" && (
+          <Intro
+            onStart={() => setMode("wizard")}
+            onViewSample={() => {
+              setAnswers(sampleAnswers);
+              setMode("report");
+            }}
+          />
+        )}
         {mode === "wizard" && (
           <Wizard
             initial={answers}
